@@ -1,0 +1,52 @@
+<h5 class="mb-3 text-primary">Search Form</h5>
+
+<div class="mb-3 d-flex gap-2 align-items-center">
+  <input
+    type="text"
+    class="form-control form-control-sm border-primary"
+    style="width: 180px;"
+    placeholder="Search by name..."
+    [(ngModel)]="searchName"
+  />
+
+  <button class="btn btn-primary btn-sm px-3" (click)="search()">
+    Search
+  </button>
+</div>
+
+<h6 class="mb-2 text-success">Product List</h6>
+
+<table class="table table-bordered table-sm" style="width: auto; min-width: 400px;">
+
+  <thead class="table-primary">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr *ngIf="searched && filteredProducts.length === 0">
+      <td colspan="4" class="text-center text-danger">
+        No products found
+      </td>
+    </tr>
+
+    <tr *ngFor="let product of filteredProducts">
+      <td>{{ product.pid }}</td>
+      <td>{{ product.pname }}</td>
+      <td class="text-success">
+        {{ product.price | number:'1.0-0' }}
+      </td>
+      <td class="text-info">
+        {{ product.category }}
+      </td>
+    </tr>
+
+  </tbody>
+
+</table>
+
